@@ -62,7 +62,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ amount, cart,userId }) => {
     }
 
     try {
-      const response = await fetch("/api/checkout_sessions", {
+      const response = await fetch(`${process.env.MY_URL}/api/checkout_sessions`, {
         method: "POST",
         cache: "no-store",
         headers: {

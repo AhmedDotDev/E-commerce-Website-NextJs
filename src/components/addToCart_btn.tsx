@@ -19,7 +19,7 @@ export const AddToCartBtn = ({product}:ProductCardsProps) => {
 
   const handleAddToCart = async()=>{
     showToast()
-    const res = await fetch("/api/cart",{
+    const res = await fetch(`${process.env.MY_URL}/api/cart`,{
       method:"POST",
       body: JSON.stringify({
         product_id:product._id,

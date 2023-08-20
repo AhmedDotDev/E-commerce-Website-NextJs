@@ -9,7 +9,7 @@ interface StripeCheckOutButtonProps {
 const StripeCheckOutButton = ({products}:StripeCheckOutButtonProps) => {
   const handleCheckout = async () => {
     const stripe = await getStipePromise();
-    const response = await fetch("/api/stripe-session/", {
+    const response = await fetch(`${process.env.MY_URL}/api/stripe-session/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       cache: "no-cache",

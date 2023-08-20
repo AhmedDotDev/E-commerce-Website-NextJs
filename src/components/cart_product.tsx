@@ -45,7 +45,7 @@ const CartProductLayout = ({cart,product}:ICart) => {
 
     const handleDelete =async () => {
         try {
-            const res = await fetch('/api/cart', {
+            const res = await fetch(`${process.env.MY_URL}/api/cart`, {
                 method: "DELETE",  
                 // mode:'no-cors', 
                 cache:"no-store",
