@@ -136,6 +136,12 @@ export default async function Home() {
 
       <div className='prefix-px my-10'>
         <div>
+        <h3 className="font-bold text-3xl text-gray-800 leading-5">
+          Some Frequently Asked Questions...
+          </h3>
+          <h5 className="text-gray-800 font-light text-lg pt-2 mb-5">
+          Dive into a world of innovative digital products that inspire and elevate your online experience. Discover the future of creativity.
+          </h5>
       <Accordian/>
       </div>
       </div>
