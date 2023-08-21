@@ -2,10 +2,11 @@
 import { useState } from "react";
 import { IProduct } from "@/app/page";
 import toast, { Toaster } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { usePathname, useRouter } from "next/navigation";
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+
 interface ProductCardsProps {
   product: IProduct;
 }
@@ -13,19 +14,21 @@ interface ProductCardsProps {
 
 export const AddToCartBtn = ({product}:ProductCardsProps) => {
   const router=useRouter();
+  const pathname = usePathname()
+
   const showToast=()=>{
     toast.success('Added To Cart Successfully!')
 }
 
   const handleAddToCart = async()=>{
-    showToast()
-    const res = await fetch(`${process.env.MY_URL}/api/cart`,{
+    const res = await fetch("/api/cart",{
       method:"POST",
       body: JSON.stringify({
         product_id:product._id,
         quantity: counter
       })
     })
+    showToast()
  const result = await res.json()
  router.refresh()
   }
@@ -101,10 +104,12 @@ export const AddToCartBtn = ({product}:ProductCardsProps) => {
       </button>
       </SignedIn>
       <SignedOut>
-      <button disabled className="mt-10 text-white bg-primary-lightpink  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <SignInButton redirectUrl={`/shop/${product.category}/${product.title}`} >
+      <button  className="mt-10 text-white bg-primary-lightpink  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Add to cart
       </button>
-      <p className="text-red-700 pt-2 text-[16px]"> <FontAwesomeIcon icon={faCircleExclamation} /> You must be signIn to add products</p>
+      {/* <p className="text-red-700 pt-2 text-[16px]"> <FontAwesomeIcon icon={faCircleExclamation} /> You must be signIn to add products</p> */}
+      </SignInButton>
       </SignedOut>
     </div>  </div>
    
