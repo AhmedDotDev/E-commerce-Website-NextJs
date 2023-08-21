@@ -8,16 +8,18 @@ import CartPopOver from './cart_icon';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const Header = () => {
-  return (
 
-    <nav className="bg-white border-gray-200 font-medium">      
+  return (
+    <header className="sticky top-0 z-50">
+
+    <nav className="bg-white border-2 border-b-gray-600 font-medium">      
       <div className="px-5 lg:px-10 max-w-screen-6xl flex flex-wrap items-center justify-between w-full">
         <div className='flex flex-row gap-x-10 items-center'>
       <Link href="/" className="flex items-center">
-          <Image src="/logo.png" className="ml-4 my-4" width={70} height={80} alt="Logo" />
+          <Image src="/logo.png" className="ml-4 my-2" width={70} height={80} alt="Logo" />
       </Link>
       <div className="hidden lg:block  w-full md:flex md:w-auto md:order-1" id="mobile-menu-1">
-        <ul className="flex flex-col  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <ul className="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li>
             <Link href={`${process.env.MY_URL}`} className="block py-2 font-poppins pl-3 pr-4 text-primary-pink bg-primary-pink rounded md:bg-transparent md:text-primary-pink md:p-0 md:dark:text-primary-pink" aria-current="page">Home</Link>
           </li>
@@ -75,6 +77,7 @@ const Header = () => {
       </div>
       
     </nav>
+    </header>
   );
 };
 
