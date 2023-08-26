@@ -83,10 +83,10 @@ const Cart = async () => {
   return (
     <div className=" max-h-max">
     <Header/>
-    <div className="flex my-[100px]  px-20 gap-x-10">
+    <div className="flex flex-col md:flex-row lg:flex-row my-[100px] px-4 md:px-20 lg:px-20 gap-x-6">
       <div className="container mx-auto ">
-        <div className="flex shadow-md ">
-          <div className="w-full bg-white px-10 py-10">
+        <div className="flex shadow-md">
+          <div className="w-full bg-white px-10 py-10 rounded-lg">
             <div className="flex justify-between border-b pb-8">
               <h1 className="font-semibold text-2xl">Shopping Cart</h1>
               <h2 className="font-semibold text-2xl">
@@ -155,7 +155,7 @@ const Cart = async () => {
         </div>
       </div>
 
-      <div className="max-w-[20%] mt-6 h-full rounded-lg border w-full bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+      <div className="max-w-[100%] md:max-w-[25%] lg:max-w-[25%] mt-6 h-full rounded-lg border w-full bg-white p-6 shadow-md md:mt-0 md:w-1/3">
         <div className="mb-2 flex justify-between">
           <p className="text-gray-700">Subtotal</p>
           <p className="text-gray-700"> ${getCartTotal(data, result)}</p>

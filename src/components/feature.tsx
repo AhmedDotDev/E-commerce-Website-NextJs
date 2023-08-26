@@ -8,8 +8,8 @@ interface cont {
   para: string;
 }
 const Data: FC<cont> = ({ image, heading, para }) => (
-  <div className="">
-    <Image src={image} alt="" className="my-3" width={60} height={60} />
+  <div className="text-center md:text-left lg:text-left">
+    <Image src={image} alt="" className="m-auto lg:my-3" width={60} height={60} />
     <h4 className="font-bold text-lg">{heading}</h4>
     <p className=" text-slate-600 py-3">{para}</p>
   </div>
@@ -40,7 +40,7 @@ const section = [
 ];
 const Features = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center my-20">
+    <div className="flex flex-col md:flex-row lg:flex-row items-center my-20">
       {section.map((item) => (
         <Data key={item.para} image={item.image} heading={item.heading} para={item.para} />
       ))}

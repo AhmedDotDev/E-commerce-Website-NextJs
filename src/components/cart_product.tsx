@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Cart } from "@/lib/drizzle";
 import { IProduct } from "@/app/shop/[category]/page";
 import { urlForImage } from "@/lib/image";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 
 
@@ -16,6 +18,10 @@ interface ICart{
 }
 
 const CartProductLayout = ({cart,product}:ICart) => {
+    const showToast=()=>{
+        toast.success('Product Removed From Cart!')
+    }
+    const router=useRouter();
     const [counter, setCounter] = useState(cart.quantity);
     const price = product.price;
 
@@ -45,7 +51,7 @@ const CartProductLayout = ({cart,product}:ICart) => {
 
     const handleDelete =async () => {
         try {
-            const res = await fetch(`${process.env.MY_URL}/api/cart`, {
+            const res = await fetch(`/api/cart`, {
                 method: "DELETE",  
                 // mode:'no-cors', 
                 cache:"no-store",
@@ -54,12 +60,14 @@ const CartProductLayout = ({cart,product}:ICart) => {
                 },
                 body:JSON.stringify({"id":cart.id})
             });
+            showToast()
+            
             if (!res.ok) {
                 throw new Error("Failed to fetch the data")
             };
-            const result = await res.json();
-  
-            return result
+
+
+            router.refresh()
         } catch (err) {
             console.log(err)
         }

@@ -33,7 +33,7 @@ const getProductsById = async (data: Cart[]) => {
 
 const getProductData = async (user_id:string) => {
   try {
-      const res = await fetch(`${process.env.MY_URL}/api/cart?user_id=${user_id}`, {
+      const res = await fetch(`/api/cart?user_id=${user_id}`, {
           method: "GET",
           mode:'no-cors',
           cache:"no-store",

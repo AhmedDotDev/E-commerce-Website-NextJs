@@ -62,7 +62,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ amount, cart,userId }) => {
     }
 
     try {
-      const response = await fetch(`${process.env.MY_URL}/api/checkout_sessions`, {
+      const response = await fetch(`/api/checkout_sessions`, {
         method: "POST",
         cache: "no-store",
         headers: {
@@ -208,7 +208,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ amount, cart,userId }) => {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
-          disabled={!stripe}
+          disabled={!stripe} 
         >
           Pay Now
         </button>
