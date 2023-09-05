@@ -1,7 +1,18 @@
 import { CheckCircle } from 'lucide-react';
 import React from 'react'
+import { cookies } from "next/headers";
 
-const Thanks = () => {
+async function deleteCart() {
+  const user_id = cookies().get("user_id");
+
+  const response=await fetch('/api/cart/',{
+    method:'DELETE',
+   headers:{ "user_id":`${user_id?.value as string}`}
+  })
+}
+const Thanks =async ()  => {
+  await deleteCart();
+
   return (
     <div className="bg-green-500 h-[100vh] flex flex-col items-center justify-center text-center">
       <div className="text-white">

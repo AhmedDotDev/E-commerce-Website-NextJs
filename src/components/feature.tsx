@@ -20,12 +20,12 @@ const section = [
   {
     image: "/like.gif",
     heading: "Top rated react landing",
-    para: "PickBazar is one of the top rated react ecommece templates in themeforest for almost 4+ years.",
+    para: "ICOMM is one of the top rated react ecommece templates in themeforest for almost 4+ years.",
   },
   {
     image: "/add.gif",
     heading: "Highest selling Ecommerce",
-    para: "WIth almost 3200+ sales, Pickbazar is the pioneer of react ecommece templates in themeforest",
+    para: "WIth almost 3200+ sales, ICOMM is the pioneer of react ecommece templates in themeforest",
   },
   {
     image: "/easy.gif",

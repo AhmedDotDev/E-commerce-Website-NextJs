@@ -1,5 +1,5 @@
 import { cartTable, db } from "@/lib/drizzle";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { cookies, headers } from "next/headers";
 import { NextResponse, NextRequest } from "next/server";
 import { v4 as uuid } from "uuid";
@@ -34,7 +34,19 @@ export const POST = async (request: NextRequest) => {
   }
 
   try {
-    const res = await db
+    const existingCartItem = await db
+      .select()
+      .from(cartTable)
+      .where(
+       and( eq(cartTable.user_id, user_id?.value as string),
+        eq(cartTable.product_id, req.product_id)
+        )
+      );
+
+    if (existingCartItem.length>=1) {
+      return NextResponse.json({ message: "Item already in cart", status:201 });
+    }
+  else{  const res = await db
       .insert(cartTable)
       .values({
         product_id: req.product_id, 
@@ -42,7 +54,9 @@ export const POST = async (request: NextRequest) => {
         user_id: cookies().get("user_id")?.value as string,
       })
       .returning();
-    return NextResponse.json({ res });
+// console.log(res)
+    return NextResponse.json({ result:res[0] });
+  }
   } catch (error) {
     console.log(error);
   }
@@ -52,7 +66,7 @@ export const DELETE = async (request: NextRequest) => {
   try {
     const res = await db
       .delete(cartTable)
-      .where(eq(cartTable.id, req.id))
+      .where(eq(cartTable.user_id, req.id))
       .returning();
     return NextResponse.json({ res });
   } catch (error) {

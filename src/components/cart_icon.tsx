@@ -7,6 +7,7 @@ import { cookies } from 'next/headers';
 const getCartItemsLength = async () => {
   try {
       const user_id = cookies().get("user_id");
+console.log(user_id)
       const res = await fetch(`${process.env.MY_URL}/api/cart?user_id=${user_id?.value}`, {
           method: "GET",
           cache:"no-store",
@@ -30,8 +31,8 @@ const getCartItemsLength = async () => {
 const CartPopOver = async () => {
 
   return (
-    <div className="relative">
-          <span className=" mt-[-20px] ml-3 bg-primary-lightpink text-white rounded-full px-[8px] py-[2px]">{await getCartItemsLength()}</span>
+    <div className="relative align-middle">
+          <span className=" bg-primary-pink text-white rounded-full px-[4px]">{await getCartItemsLength()}</span>
 
       <Link href="/cart">
       <FontAwesomeIcon icon={faCartShopping} className='w-7' style={{"color": "#38b6ff"}}/>

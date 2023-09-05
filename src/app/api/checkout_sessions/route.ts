@@ -16,7 +16,14 @@ const createPaymentIntent = async (amount: number) => {
 
   return paymentIntent;
 };
-
+// export const GET = async (request: NextRequest) => {
+//   try {
+//     const res = await db.select().from(OrderTable).where(eq(OrderTable.user_id, user_id as string));
+//     return NextResponse.json(res);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 export const POST = async (request: NextRequest) => {
   const req = await request.json();
 
@@ -58,8 +65,11 @@ const saveOrder = async (alldata: any) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth() + 1; // Adding 1 because getMonth() returns a zero-based value
   const day = currentDate.getDate();
+  const hours = currentDate.getHours();
+const minutes = currentDate.getMinutes();
+const seconds = currentDate.getSeconds();
 
-  const formattedDate = `${year}-${month}-${day}`;
+const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
   const res = await db
     .insert(OrderTable)

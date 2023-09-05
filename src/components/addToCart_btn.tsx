@@ -16,9 +16,6 @@ export const AddToCartBtn = ({product}:ProductCardsProps) => {
   const router=useRouter();
   const pathname = usePathname()
 
-  const showToast=()=>{
-    toast.success('Added To Cart Successfully!')
-}
 
   const handleAddToCart = async()=>{
     const res = await fetch("/api/cart",{
@@ -28,9 +25,16 @@ export const AddToCartBtn = ({product}:ProductCardsProps) => {
         quantity: counter
       })
     })
-    showToast()
- const result = await res.json()
- router.refresh()
+    const result = await res.json()
+    console.log(result.message)
+    if (result.status ===201) {
+      // Item is already in the cart, you can show a message to the user
+      toast.error('Item is already in the cart!')
+    } else {
+      // Item added to the cart successfully
+      toast.success('Item added to cart!')
+      router.refresh();
+    }
   }
   const price:number = Number(product.price);
 
@@ -104,7 +108,7 @@ export const AddToCartBtn = ({product}:ProductCardsProps) => {
       </button>
       </SignedIn>
       <SignedOut>
-        <SignInButton redirectUrl={`/shop/${product.category}/${product.title}`} >
+      <SignInButton afterSignInUrl={`${pathname}`} afterSignUpUrl={`${pathname}`} >
       <button  className="mt-10 text-white bg-primary-lightpink  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Add to cart
       </button>
